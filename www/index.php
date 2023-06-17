@@ -1,48 +1,66 @@
-<!-- put in ./www directory -->
-
+<?php
+    session_start();
+?>
+!DOCTYPE html>
 <html>
- <head>
-  <title>Hello...</title>
 
-  <meta charset="utf-8">
-
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
+<head>
+    <title>Formulario</title>
 </head>
+
 <body>
-    <div class="container">
-    <?php echo "<h1>Hi! I'm happy</h1>"; ?>
-
     <?php
+    if (isset($_SESSION["saldo"])) {
+        // Comprobar si se ha enviado el formulario por el método POST
+        if (!empty($_POST)) {
+            print_r($_POST);
+            $cantidad = filter_input(INPUT_POST, 'cantidad', FILTER_VALIDATE_FLOAT);
+            $tipoMovimiento = filter_input(INPUT_POST, 'tipoMovimiento', FILTER_VALIDATE_INT);
+            echo "La cantidad es $cantidad";
+            echo "EL tipoMovimiento es $tipoMovimiento";
+            $saldo = $_SESSION['saldo'];
+            if ($cantidad < 0 || empty($tipoMovimiento)) {
+                echo "Datos incorrectamentos";
+            } else {
+                if ($tipoMovimiento<1){
+                    $_SESSION['saldo'] = $cantidad + $_SESSION['saldo'];
+                }
+                else{
+                    $_SESSION['saldo'] = $_SESSION['saldo'] - $cantidad ;
+                }
 
-    $conn = mysqli_connect('db', 'user', 'test', "myDb");
 
-    if (!$conn) {
-        die("Error al conectar a la base de datos: " . mysqli_connect_error());
-    }
-    $query = 'SELECT * From Person';
-    $result = mysqli_query($conn, $query);
+                echo "Datos corretos $cantidad";
+                $saldo2 = $_SESSION['saldo'];
+                echo "Saldo anteror $saldo2";
+            };
 
-    echo '<table class="table table-striped">';
-    echo '<thead><tr><th></th><th>id</th><th>name</th></tr></thead>';
-    while($value = $result->fetch_array(MYSQLI_ASSOC)){
-        echo '<tr>';
-        echo '<td><a href="#"><span class="glyphicon glyphicon-search"></span></a></td>';
-        foreach($value as $element){
-            echo '<td>' . $element . '</td>';
+            $saldo = $_SESSION['saldo'];
+            echo "\n<br> Saldo $saldo";
+        } else {
+            echo "No se ha enviado formulario";
         }
+    } else {
+        $_SESSION["saldo"] = 0;
+        $saldo = $_SESSION["saldo"];
+        echo "<br> Inicio de saldo $saldo";
 
-        echo '</tr>';
     }
-    echo '</table>';
-
-    $result->close();
-
-    mysqli_close($conn);
-
     ?>
-    </div>
+    <h1>Ejemplo con formularios</h1>
+    <hr>
+    <form method="POST">
+        <label for="nombre"> Cantidad: </label>
+        <input type="number" name="cantidad" value="1">
+        <br>
+
+        <label for="nombre"> Ingreso: </label>
+        <input type="radio" name="tipoMovimiento" value="1">
+        <label for="nombre"> gasto: </label>
+        <input type="radio" name="tipoMovimiento" value="2">
+        <br>
+        <input type="submit" value="Enviar">
+    </form>
 </body>
+
 </html>
