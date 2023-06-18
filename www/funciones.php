@@ -4,6 +4,12 @@
 //
 // }
 
+// Recoradar usar el mismo nombre en el formulario y en la obtencion de datos de PHP
+// 1.Comprobar session, inicializar session,
+// 2.Comprobar obtencion de datos, validar.
+// 3.Calcular datos aplicar logica.
+// 4. Mostrar resultado.
+
 function comprobarDatosEnviados($name)
 {
   if (!empty($_REQUEST)) {
