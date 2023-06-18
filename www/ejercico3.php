@@ -13,22 +13,6 @@ $SESSION_NAME = "idioma"
     <?php
     if (!isset($_SESSION[$SESSION_NAME])) {
         $_SESSION[$SESSION_NAME] = "";
-    } else {
-        if (!empty($_POST)) {
-            $val = filter_input(INPUT_POST, "idioma", FILTER_SANITIZE_STRING);
-            $_SESSION[$SESSION_NAME] = $val;
-            if ($_SESSION[$SESSION_NAME]=='español'){
-                echo"Buenos dias";
-            }
-            if ($_SESSION[$SESSION_NAME]=='ingles'){
-                echo"Good morning";
-            }
-            if ($_SESSION[$SESSION_NAME]=='frances'){
-                echo"Bonjour";
-            }
-        } else {
-            echo "Datos incorrectamentos";
-        }
     }
     ?>
 
@@ -37,7 +21,7 @@ $SESSION_NAME = "idioma"
         <?= $_SESSION[$FIELD_NAME] ?>
     </h1>
 
-    <form method="POST">
+    <form action="saludos.php" method="POST">
         <select name="idioma">
             <option value="español">español</option>
             <option value="ingles">ingles</option>
