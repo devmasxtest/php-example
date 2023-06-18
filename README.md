@@ -54,3 +54,20 @@ Recoradar usar el mismo nombre en el formulario y en la obtencion de datos de PH
         }
     }
 ```
+
+
+## Estructuras de datos
+
+```python
+productos = ["1", "2"]
+```
+
+```php
+$productos = array("1", "2")
+```
+
+```java
+private ArrayList<String> productos = new ArrayList<>()
+productos.add("1")
+productos.add("2")
+```
