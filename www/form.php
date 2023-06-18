@@ -18,6 +18,7 @@ $SESSION_NAME = "usuario"
         if (!empty($_POST)) {
             $nombre = filter_input(INPUT_POST, $FIELD_NAME, FILTER_SANITIZE_STRING);
             $_SESSION[$SESSION_NAME] = $nombre;
+            echo "Hola" . $_SESSION[$SESSION_NAME];
         } else {
             echo "Datos incorrectamentos";
         }
