@@ -1,8 +1,8 @@
 <?php
-function inicioSession($name, $value)
+function inicioSession($name, $initValue)
 {
   if (!isset($_SESSION[$name])) {
-    $_SESSION[$name] = $value;
+    $_SESSION[$name] = $initValue;
   }
 }
 

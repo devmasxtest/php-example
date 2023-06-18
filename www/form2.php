@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("./funciones.php");
-$FIELD_NAME = "usuarioNombre";
+$FIELD_NAME = "email";
 ?>
 <html>
 
@@ -15,11 +15,6 @@ $FIELD_NAME = "usuarioNombre";
       $nombre = validarCampoString($FIELD_NAME);
       $_SESSION[$FIELD_NAME] = $nombre;
     ?>
-
-    <h1>
-        Hola:
-        <?= $_SESSION[$FIELD_NAME] ?>
-    </h1>
 
     <form method="POST">
         <label for="nombre"> ¿Cual es tu nombre?: </label>
