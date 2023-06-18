@@ -1,4 +1,9 @@
 <?php
+
+// if () {
+//
+// }
+
 function inicioSession($name, $initValue)
 {
   if (!isset($_SESSION[$name])) {
@@ -17,6 +22,9 @@ function validarCampoString($FIELD_NAME)
       return $field;
     }
   }
+}
+function incrementSession($name, $increment) {
+  return $_SESSION[$name] = $_SESSION[$name] + $increment;
 }
 ?>
 

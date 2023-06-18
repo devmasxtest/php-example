@@ -2,6 +2,7 @@
 session_start();
 include("./funcionesArrays.php");
 $FIELD_NAME = "usuarioNombre";
+$SESSION_NAME = "usuario"
 ?>
 <html>
 
@@ -11,12 +12,12 @@ $FIELD_NAME = "usuarioNombre";
 
 <body>
     <?php
-    if (!isset($_SESSION[$FIELD_NAME])) {
-        $_SESSION[$FIELD_NAME] = "";
+    if (!isset($_SESSION[$SESSION_NAME])) {
+        $_SESSION[$SESSION_NAME] = "";
     } else {
         if (!empty($_POST)) {
             $nombre = filter_input(INPUT_POST, $FIELD_NAME, FILTER_SANITIZE_STRING);
-            $_SESSION[$FIELD_NAME] = $nombre;
+            $_SESSION[$SESSION_NAME] = $nombre;
         } else {
             echo "Datos incorrectamentos";
         }
