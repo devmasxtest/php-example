@@ -43,8 +43,6 @@
     } else {
         $_SESSION["saldo"] = 0;
         $saldo = $_SESSION["saldo"];
-        echo "<br> Inicio de saldo $saldo";
-
     }
     ?>
     <h1>Ejemplo con formularios</h1>
